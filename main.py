@@ -9,7 +9,6 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
-bot = discord.Client(intents=intents)
 
 def generate_response(message):
     completion = openai.ChatCompletion.create(
@@ -40,6 +39,5 @@ async def on_message(message):
             async with message.channel.typing():
                 response = generate_response(message.content)
                 await message.channel.send(response)
-        
 
 client.run(os.getenv('DISCORD_API_KEY'))
